@@ -1,0 +1,10 @@
+{
+  "name": "SAS-Mobile",
+  "app_id": "",
+  "proxies": [
+    {
+    "path": "/login",
+    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario/login"
+    }
+  ]
+}
