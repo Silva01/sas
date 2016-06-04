@@ -13,17 +13,28 @@ angular.module('starter.controllers', [])
     senha: ""
   };
 
+  $scope.dadosRementente = {
+    nomeRementente: "",
+    emailRementente: "",
+    telefoneRementente: "",
+    status : "Pendente",
+    faixa : 0
+  };
+
   $scope.enviar = function(){
-    /*var config = {
-      headers:{'Content-Type': undefined}
-    };*/
-  //  $http.post('http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario', JSON.stringify($scope.loginDados), config);
+    $scope.dadosRementente.nomeRementente = localStorage.getItem("nome");
+    $scope.dadosRementente.emailRementente = localStorage.getItem("email");
+    $scope.dadosRementente.telefoneRementente = localStorage.getItem("telefone");
+    $http.post('/analise', JSON.stringify($scope.dadosRementente));
   };
 
   $scope.validarLogin = function(){
-
     $http.post('/login', $scope.loginDados).then(function(response){
-      if((response.data.split(":")[1].localeCompare("true")) >= 0){
+      if((response.data.senha.localeCompare("")) > 0){
+        localStorage.setItem("nome", response.data.nome);
+        localStorage.setItem("telefone", response.data.telefone);
+        localStorage.setItem("email", response.data.email);
+        localStorage.setItem("usuario", response.data.usuario);
         window.location.href = "#/app/search";
         window.location.reload();
       }

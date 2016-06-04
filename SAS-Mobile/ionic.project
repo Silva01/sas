@@ -5,6 +5,10 @@
     {
     "path": "/login",
     "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario/login"
+    },
+    {
+    "path":"/analise",
+    "proxyUrl":"http://localhost:8080/ServicoDeAnaliseDoSolo/rest/analise/analisar"
     }
   ]
 }
