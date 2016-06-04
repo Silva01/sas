@@ -1,8 +1,6 @@
-angular.module('starter.controllers', []).constant ( 'ApiEndpoint' , {
-  url: 'http://localhost:8100'
-})
+angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location) {
+.controller('AppCtrl', function($scope, $timeout, $http, $state) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -23,20 +21,13 @@ angular.module('starter.controllers', []).constant ( 'ApiEndpoint' , {
   };
 
   $scope.validarLogin = function(){
-    /*var config = {
-      headers:{
-        'Content-Type': undefined
+
+    $http.post('/login', $scope.loginDados).then(function(response){
+      if((response.data.split(":")[1].localeCompare("true")) >= 0){
+        window.location.href = "#/app/search";
+        window.location.reload();
       }
-    };*/
-    //$location.path("/app/search");
-
-    $http.get('/login').then(function(response){
-      //if(data.data.length == 0){
-        $scope.dados = response.data.profile.name;
-        alert($scope.dados);
-    //  }
     });
-
   };
 })
 

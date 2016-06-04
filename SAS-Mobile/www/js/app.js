@@ -53,8 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: '/login',
       views: {
         'login': {
-          templateUrl: 'templates/login.html',
-
+          templateUrl: 'templates/login.html'
         }
       }
     })
