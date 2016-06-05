@@ -13,6 +13,10 @@
     {
     "path": "/dados",
     "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/informativa/lista"
+    },
+    {
+    "path": "/cadastrar",
+    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario/cadastrar"
     }
   ]
 }

@@ -58,12 +58,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.cadastrar', {
+    url: '/cadastrar',
     views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+      'login': {
+        templateUrl: 'templates/cadastrar.html',
       }
     }
   });
