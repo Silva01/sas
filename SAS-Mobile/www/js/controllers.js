@@ -17,28 +17,29 @@ angular.module('starter.controllers', [])
      $scope.modal = modal;
   });
 
+  $ionicModal.fromTemplateUrl('templates/resposta.html', {
+   scope: $scope,
+   animation: 'slide-in-up',
+ }).then(function(modalResposta) {
+     $scope.modalResposta = modalResposta;
+  });
+
   $scope.openModal = function() {
-     $scope.modal.show();
+    $scope.modal.show();
   };
 
-  $scope.closeModal = function() {
-     $scope.modal.hide();
+  $scope.fechar = function(){
+    $scope.modal.hide();
   };
 
-  //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-     $scope.modal.remove();
-  });
+  $scope.fecharModalResposta = function(){
+    $scope.modalResposta.hide();
+  };
 
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-     // Execute action
-  });
-
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-     // Execute action
-  });
+  $scope.abrirModalResposta = function(resposta){
+    $scope.resposta = resposta;
+    $scope.modalResposta.show();
+  };
 
   $scope.loginDados = {
     usuario: "",
@@ -82,6 +83,9 @@ angular.module('starter.controllers', [])
         localStorage.setItem("usuario", response.data.usuario);
         window.location.href = "#/app/lista";
         window.location.reload();
+      } else {
+        $scope.resposta = "Usuário ou Senha Inválida";
+        $scope.modalResposta.show();
       }
     });
   };
@@ -99,7 +103,6 @@ angular.module('starter.controllers', [])
 
   $scope.cadastrar = function(){
     $http.post('/cadastrar', $scope.cadastro).then(function(response){
-      alert(response.data);
       $scope.cadastro = {
         _id: "",
         nome: "",
@@ -108,6 +111,8 @@ angular.module('starter.controllers', [])
         usuario: "",
         senha: ""
       };
+      $scope.resposta = response.data;
+      $scope.modalResposta.show();
       window.location.href = "#/app/login";
     });
   };

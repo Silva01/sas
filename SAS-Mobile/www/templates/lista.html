@@ -1,7 +1,7 @@
 <ion-view view-title="Browse">
   <ion-content>
     <div class="list" ng-init="carregarLista()">
-      <a class="item item-avatar" href="#" ng-repeat="list in lista">
+      <a class="item item-avatar" ng-repeat="list in lista" ng-click="abrirModalResposta(list.resposta)">
         <img src="img/ionic.png"/>
         <h2>{{ list.faixa }}</h2>
         <p>{{ list.resposta }}</p>
