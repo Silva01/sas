@@ -9,6 +9,10 @@
     {
     "path":"/analise",
     "proxyUrl":"http://localhost:8080/ServicoDeAnaliseDoSolo/rest/analise/analisar"
+    },
+    {
+    "path": "/dados",
+    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/informativa/lista"
     }
   ]
 }

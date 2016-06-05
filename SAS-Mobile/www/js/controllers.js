@@ -18,6 +18,7 @@ angular.module('starter.controllers', [])
     emailRementente: "",
     telefoneRementente: "",
     status : "Pendente",
+    usuario: "",
     faixa : 0
   };
 
@@ -25,6 +26,7 @@ angular.module('starter.controllers', [])
     $scope.dadosRementente.nomeRementente = localStorage.getItem("nome");
     $scope.dadosRementente.emailRementente = localStorage.getItem("email");
     $scope.dadosRementente.telefoneRementente = localStorage.getItem("telefone");
+    $scope.dadosRementente.usuario = localStorage.getItem("usuario");
     $http.post('/analise', JSON.stringify($scope.dadosRementente));
   };
 
@@ -35,22 +37,18 @@ angular.module('starter.controllers', [])
         localStorage.setItem("telefone", response.data.telefone);
         localStorage.setItem("email", response.data.email);
         localStorage.setItem("usuario", response.data.usuario);
-        window.location.href = "#/app/search";
+        window.location.href = "#/app/lista";
         window.location.reload();
       }
     });
   };
-})
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+  $scope.carregarLista = function(){
+    var user = localStorage.getItem("usuario");
+    $http.post('/dados', user).then(function(response){
+      $scope.lista = response.data;
+    });
+  };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
