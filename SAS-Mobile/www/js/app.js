@@ -62,7 +62,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/cadastrar',
     views: {
       'login': {
-        templateUrl: 'templates/cadastrar.html',
+        templateUrl: 'templates/cadastrar.html'
+      }
+    }
+  })
+
+  .state('app.atualizar',{
+    url: '/atualizar',
+    views: {
+      'menuContent':{
+        templateUrl: 'templates/atualizarUsuario.html'
       }
     }
   });

@@ -1,0 +1,29 @@
+<ion-view view-title="Atualizar Usuario">
+  <ion-content>
+    <div class="list" ng-init="carregar()">
+      <label class="item item-input item-stacked-label">
+        <span>Nome</span>
+        <input type="text" value="nome" ng-model="cadastro.nome">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span>telefone</span>
+        <input type="text" value="00-00000-0000" ng-model="cadastro.telefone">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span>E-mail</span>
+        <input type="email" value="E-mail" ng-model="cadastro.email">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span>Usuario</span>
+        <input type="text" value="User" ng-model="cadastro.usuario">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span>Senha</span>
+        <input type="password" ng-model="cadastro.senha">
+      </label>
+      <label class="item">
+        <button type="button" class="button button-block button-balanced" ng-click="atualizar()">Atualizar</button>
+      </label>
+    </div>
+  </ion-content>
+</ion-view>

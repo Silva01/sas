@@ -23,6 +23,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.cadastro = {
+    _id: "",
     nome: "",
     telefone: "",
     email: "",
@@ -35,7 +36,9 @@ angular.module('starter.controllers', [])
     $scope.dadosRementente.emailRementente = localStorage.getItem("email");
     $scope.dadosRementente.telefoneRementente = localStorage.getItem("telefone");
     $scope.dadosRementente.usuario = localStorage.getItem("usuario");
-    $http.post('/analise', JSON.stringify($scope.dadosRementente));
+    $http.post('/analise', JSON.stringify($scope.dadosRementente)).then(function(){
+      window.location.reload();
+    });
   };
 
   $scope.validarLogin = function(){
@@ -64,7 +67,29 @@ angular.module('starter.controllers', [])
 
   $scope.cadastrar = function(){
     $http.post('/cadastrar', $scope.cadastro).then(function(response){
+      alert(response.data);
+      $scope.cadastro = {
+        _id: "",
+        nome: "",
+        telefone: "",
+        email: "",
+        usuario: "",
+        senha: ""
+      };
       window.location.href = "#/app/login";
+    });
+  };
+
+  $scope.carregar = function(){
+    var user = localStorage.getItem("usuario");
+    $http.post('/carregar', user).then(function(response){
+      $scope.cadastro = response.data;
+    });
+  };
+
+  $scope.atualizar = function(){
+    $http.put('/atualizar', $scope.cadastro).then(function(){
+      window.location.reload();
     });
   };
 })
