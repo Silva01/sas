@@ -89,6 +89,18 @@ angular.module('starter.controllers', [])
 
   $scope.atualizar = function(){
     $http.put('/atualizar', $scope.cadastro).then(function(){
+      localStorage.setItem("nome", $scope.cadastro.nome);
+      localStorage.setItem("telefone", $scope.cadastro.telefone);
+      localStorage.setItem("email", $scope.cadastro.email);
+      localStorage.setItem("usuario", $scope.cadastro.usuario);
+      $scope.cadastro = {
+        _id: "",
+        nome: "",
+        telefone: "",
+        email: "",
+        usuario: "",
+        senha: ""
+      };
       window.location.reload();
     });
   };
