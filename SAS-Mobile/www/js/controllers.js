@@ -22,6 +22,14 @@ angular.module('starter.controllers', [])
     faixa : 0
   };
 
+  $scope.cadastro = {
+    nome: "",
+    telefone: "",
+    email: "",
+    usuario: "",
+    senha: ""
+  };
+
   $scope.enviar = function(){
     $scope.dadosRementente.nomeRementente = localStorage.getItem("nome");
     $scope.dadosRementente.emailRementente = localStorage.getItem("email");
@@ -47,6 +55,16 @@ angular.module('starter.controllers', [])
     var user = localStorage.getItem("usuario");
     $http.post('/dados', user).then(function(response){
       $scope.lista = response.data;
+    });
+  };
+
+  $scope.formCadastro = function(){
+    window.location.href = "#/app/cadastrar";
+  };
+
+  $scope.cadastrar = function(){
+    $http.post('/cadastrar', $scope.cadastro).then(function(response){
+      window.location.href = "#/app/login";
     });
   };
 })
