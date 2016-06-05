@@ -23,7 +23,11 @@
     "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario/carregar"
     },
     {
-    "path": "/atualizar",
+    "path": "/cadastrar",
+    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario"
+    },
+    {
+    "path": "/deletar",
     "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario"
     }
   ]

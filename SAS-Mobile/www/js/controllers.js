@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $timeout, $http, $state) {
+.controller('AppCtrl', function($scope, $timeout, $http, $state, $ionicModal) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -8,6 +8,38 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  $scope.alerta = "Você Realmente Deseja Excluir Seu Perfil ?";
+
+  $ionicModal.fromTemplateUrl('templates/aviso.html', {
+   scope: $scope,
+   animation: 'slide-in-up',
+  }).then(function(modal) {
+     $scope.modal = modal;
+  });
+
+  $scope.openModal = function() {
+     $scope.modal.show();
+  };
+
+  $scope.closeModal = function() {
+     $scope.modal.hide();
+  };
+
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+     $scope.modal.remove();
+  });
+
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+     // Execute action
+  });
+
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+     // Execute action
+  });
+
   $scope.loginDados = {
     usuario: "",
     senha: ""
@@ -88,7 +120,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.atualizar = function(){
-    $http.put('/atualizar', $scope.cadastro).then(function(){
+    $http.put('/cadastrar', $scope.cadastro).then(function(){
       localStorage.setItem("nome", $scope.cadastro.nome);
       localStorage.setItem("telefone", $scope.cadastro.telefone);
       localStorage.setItem("email", $scope.cadastro.email);
@@ -102,6 +134,15 @@ angular.module('starter.controllers', [])
         senha: ""
       };
       window.location.reload();
+    });
+  };
+
+  $scope.deletar = function(){
+    $scope.data = localStorage.getItem("usuario");
+    $http.delete('/deletar'+'/'+ $scope.data).then(function(){
+      $scope.alerta = "Excluido com Sucesso";
+      window.location.href = "#/app/login";
+      $scope.modal.hide();
     });
   };
 })
