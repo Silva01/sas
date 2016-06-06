@@ -1,0 +1,25 @@
+<template name="formularioAtualizar">
+	{{> menu}}
+	{{#each dados}}
+	<form>
+		<div class="form-group">
+			<label for="faixaMin">Faixa Minima</label>
+			<input type="number" class="form-control" name="faixaMinima" placeholder="Faixa Minima" value="{{faixaMin}}">
+		</div>
+		<div class="form-group">
+			<label for="faixaMax">Faixa Maxima</label>
+			<input type="number" class="form-control" name="faixaMaxima" placeholder="Faixa Maxima" value="{{faixaMax}}">
+		</div>
+		<div class="form-group">
+			<label for="classificacao">Classificação</label>
+			<input type="text" class="form-control" name="classificar" placeholder="Classificação" value="{{classificacao}}">
+		</div>
+		<div class="form-group">
+			<label for="informacao">Informação</label>
+			<textarea rows="4" class="form-control" name="infor">{{informacao}}</textarea>
+		</div>
+		<button type="submit" class="btn btn-default">Atualizar</button>
+		<button type="reset" class="btn btn-default">Limpar</button>
+	</form>
+	{{/each}}
+</template>

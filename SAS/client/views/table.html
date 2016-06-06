@@ -1,0 +1,32 @@
+<template name="table">
+	{{> menu}}
+	<div class="panel panel-warning">
+		<div class="panel-heading">Informativa</div>
+		<div class="panel-body">
+			<p>Esta tabela traz dados referente a analise já realizada por profissionais, no qual será utilizada para analise e resposta aos clientes</p>
+		</div>
+
+		<table class="table table-hover">
+		<tbody>
+			<tr>
+				<th>Faixa Minima</th>
+				<th>Faixa Maxima</th>
+				<th>Classificação</th>
+				<th>Informação</th>
+				<th>Atualizar</th>
+				<th>Deletar</th>
+			</tr>
+			{{#each cadastros}}
+			<tr>
+				<td>{{faixaMin}}</td>
+				<td>{{faixaMax}}</td>
+				<td>{{classificacao}}</td>
+				<td>{{informacao}}</td>
+				<td><a href="/atualizar" class="atualizar"><span class="label label-success">Atualizar</span></a></td>
+				<td><a href="#" class="delete"><span class="label label-danger">Apagar</span></a></td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	</div>	
+</template>

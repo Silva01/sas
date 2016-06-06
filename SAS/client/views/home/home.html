@@ -1,0 +1,15 @@
+<template name="home">
+	{{> header}}
+	<main class="container">
+		{{#if currentUser}}
+		<section class="col-sm-12">
+			{{> yield}}
+		</section>
+		{{else}}
+		<div class="text-center">
+			{{> abertura}}
+		</div>
+		{{/if}}
+	</main>
+	{{> footer}}
+</template>

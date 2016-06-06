@@ -1,0 +1,8 @@
+body{
+	background-image:url("/resources/bg.jpg");
+}
+
+.container{
+	background-color: #FFF;
+	width: 1000px;
+}
