@@ -1,0 +1,30 @@
+<template name="analise">
+	{{> menu}}
+	<div class="panel panel-warning">
+		<div class="panel-heading">Pendente</div>
+		<div class="panel-body">
+			<p>Esta tabela traz dados para análise de dados pendentes no qual não foi encontrada nenhuma informação ao comparar os dados da tabela informativa</p>
+		</div>
+
+		<table class="table table-hover">
+		<tbody>
+			<tr>
+				<th>Nome Agricultor</th>
+				<th>Faixa</th>
+				<th>E-mail</th>
+				<th>Telefone</th>
+				<th>Status</th>
+				<th>Cadastrar</th>
+			</tr>
+			<tr>
+				<td>Daniel Gomes da Silva</td>
+				<td>400</td>
+				<td>silva@gmail.com</td>
+				<td>(61) 8888-9999</td>
+				<td>Pendente</td>
+				<td><a href="/cadastrar"><span class="label label-success">Cadastrar</span></a></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</template>
