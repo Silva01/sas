@@ -64,6 +64,15 @@ angular.module('starter.controllers', [])
     senha: ""
   };
 
+  $scope.cadastroAtualizar = {
+    _id: "",
+    nome: "",
+    telefone: "",
+    email: "",
+    usuario: "",
+    senha: ""
+  };
+
   $scope.enviar = function(){
     $scope.dadosRementente.nomeRementente = localStorage.getItem("nome");
     $scope.dadosRementente.emailRementente = localStorage.getItem("email");
@@ -120,25 +129,22 @@ angular.module('starter.controllers', [])
   $scope.carregar = function(){
     var user = localStorage.getItem("usuario");
     $http.post('/carregar', user).then(function(response){
-      $scope.cadastro = response.data;
+      $scope.cadastroAtualizar = response.data;
+      $scope.cadastroAtualizar._id = response.data._id.$oid;
     });
   };
 
   $scope.atualizar = function(){
-    $http.put('/cadastrar', $scope.cadastro).then(function(){
-      localStorage.setItem("nome", $scope.cadastro.nome);
-      localStorage.setItem("telefone", $scope.cadastro.telefone);
-      localStorage.setItem("email", $scope.cadastro.email);
-      localStorage.setItem("usuario", $scope.cadastro.usuario);
-      $scope.cadastro = {
-        _id: "",
-        nome: "",
-        telefone: "",
-        email: "",
-        usuario: "",
-        senha: ""
-      };
-      window.location.reload();
+    $http.put('/atualizar', $scope.cadastroAtualizar).then(function(response){
+      if (response.data == "1") {
+        $scope.resposta = "Atualizado com Sucesso, Por favor Logue Novamente para Confirmar as Alterações";
+        $scope.modalResposta.show();
+        window.location.href = "#/app/login"
+      }
+      else {
+        $scope.resposta = "Usuário já cadastrado, escolha outro nome de usuário";
+        $scope.modalResposta.show();
+      }
     });
   };
 
