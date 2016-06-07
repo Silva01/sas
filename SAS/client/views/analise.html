@@ -12,18 +12,20 @@
 				<th>Nome Agricultor</th>
 				<th>Faixa</th>
 				<th>E-mail</th>
-				<th>Telefone</th>
 				<th>Status</th>
 				<th>Cadastrar</th>
+				<th>Baixar Requisição</th>
 			</tr>
+			{{#each pendente}}
 			<tr>
-				<td>Daniel Gomes da Silva</td>
-				<td>400</td>
-				<td>silva@gmail.com</td>
-				<td>(61) 8888-9999</td>
-				<td>Pendente</td>
+				<td>{{ nomeRementente }}</td>
+				<td>{{ faixa }}</td>
+				<td>{{ email }}</td>
+				<td>{{ status }}</td>
 				<td><a href="/cadastrar"><span class="label label-success">Cadastrar</span></a></td>
+				<td><a href="#" class="baixa"><span class="label label-danger">Baixar Pendencia</span></a></td>
 			</tr>
+			{{/each}}
 		</tbody>
 	</table>
 	</div>
