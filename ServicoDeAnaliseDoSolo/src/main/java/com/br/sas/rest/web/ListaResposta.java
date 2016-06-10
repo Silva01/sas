@@ -4,6 +4,7 @@
 package com.br.sas.rest.web;
 
 import javax.ejb.Stateless;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -54,10 +55,19 @@ public class ListaResposta extends PersistenceUtil {
 	@POST
 	@Path("lista")
 	public String buscarListaPendente(String json){
-		System.out.println(json);
 		BasicDBObject filtro = new BasicDBObject();
 		filtro.put("usuario", json);
 		DBCursor cursor = buscarDadosPorFiltro(db, "resposta", filtro);
 		return gson.toJson(cursor.toArray());
+	}
+	
+	@DELETE
+	@Path("{user}/{faixa}")
+	public String excluirResposta(@PathParam("user") String user, @PathParam("faixa") String faixa){
+		BasicDBObject dados = new BasicDBObject();
+		dados.put("usuario", user);
+		dados.put("faixa", faixa);
+		deletarDados(db, "resposta", dados);
+		return gson.toJson("Excluido com Sucesso");
 	}
 }
