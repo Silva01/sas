@@ -4,35 +4,31 @@
   "proxies": [
     {
     "path": "/login",
-    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario/login"
+    "proxyUrl": "http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario/login"
     },
     {
     "path":"/analise",
-    "proxyUrl":"http://localhost:8080/ServicoDeAnaliseDoSolo/rest/analise/analisar"
+    "proxyUrl":"http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/analise/analisar"
     },
     {
     "path": "/dados",
-    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/informativa/lista"
+    "proxyUrl": "http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/informativa/lista"
     },
     {
     "path": "/cadastrar",
-    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario/cadastrar"
+    "proxyUrl": "http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario/cadastrar"
     },
     {
     "path": "/carregar",
-    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario/carregar"
+    "proxyUrl": "http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario/carregar"
     },
     {
     "path": "/atualizar",
-    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario"
+    "proxyUrl": "http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario"
     },
     {
     "path": "/deletar",
-    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario"
-    },
-    {
-    "path": "/deletarResposta",
-    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/informativa"
+    "proxyUrl": "http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario"
     }
   ]
 }
