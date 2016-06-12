@@ -12,10 +12,15 @@ Template.analise.events({
     }
 
     var pendencias = Pendente.find({faixa: this.faixa}).count();
-    alert(pendencias);
     for (var i = 0; i < pendencias; i++) {
       var dados = Pendente.findOne({faixa: this.faixa});
       Pendente.remove(dados._id);
     }
   }
-})
+});
+
+Template.analise.events({
+  'click .apagar': function(){
+    Pendente.remove(this._id);
+  }
+});

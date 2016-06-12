@@ -15,6 +15,7 @@
 				<th>Status</th>
 				<th>Cadastrar</th>
 				<th>Baixar Requisição</th>
+				<th>Deletar</th>
 			</tr>
 			{{#each pendente}}
 			<tr>
@@ -24,6 +25,7 @@
 				<td>{{ status }}</td>
 				<td><a href="/cadastrar"><span class="label label-success">Cadastrar</span></a></td>
 				<td><a href="#" class="baixa"><span class="label label-danger">Baixar Pendencia</span></a></td>
+				<td><a href="#" class="apagar"><span class="label label-danger">Excluir</span></a></td>
 			</tr>
 			{{/each}}
 		</tbody>
