@@ -29,6 +29,10 @@
     {
     "path": "/deletar",
     "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/usuario"
+    },
+    {
+    "path": "/deletarResposta",
+    "proxyUrl": "http://localhost:8080/ServicoDeAnaliseDoSolo/rest/informativa"
     }
   ]
 }
