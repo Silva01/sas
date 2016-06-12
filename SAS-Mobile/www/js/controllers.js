@@ -111,7 +111,7 @@ angular.module('starter.controllers', [])
     $scope.dadosRementente.emailRementente = localStorage.getItem("email");
     $scope.dadosRementente.telefoneRementente = localStorage.getItem("telefone");
     $scope.dadosRementente.usuario = localStorage.getItem("usuario");
-    $http.post('/analise', JSON.stringify($scope.dadosRementente)).then(function(){
+    $http.post('http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/analise/analisar', JSON.stringify($scope.dadosRementente)).then(function(){
       $scope.resposta = "Faixa Enviada com Sucesso"
       $scope.recarregar = 1;
       $scope.modalResposta.show();
@@ -119,7 +119,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.validarLogin = function(){
-    $http.post('/login', $scope.loginDados).then(function(response){
+    $http.post('http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario/login', $scope.loginDados).then(function(response){
       if((response.data.senha.localeCompare("")) > 0){
         localStorage.setItem("nome", response.data.nome);
         localStorage.setItem("telefone", response.data.telefone);
@@ -136,7 +136,7 @@ angular.module('starter.controllers', [])
 
   $scope.carregarLista = function(){
     var user = localStorage.getItem("usuario");
-    $http.post('/dados', user).then(function(response){
+    $http.post('http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/informativa/lista', user).then(function(response){
       $scope.lista = response.data;
     });
   };
@@ -146,7 +146,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.cadastrar = function(){
-    $http.post('/cadastrar', $scope.cadastro).then(function(response){
+    $http.post('http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario/cadastrar', $scope.cadastro).then(function(response){
       $scope.cadastro = {
         _id: "",
         nome: "",
@@ -163,14 +163,14 @@ angular.module('starter.controllers', [])
 
   $scope.carregar = function(){
     var user = localStorage.getItem("usuario");
-    $http.post('/carregar', user).then(function(response){
+    $http.post('http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario/carregar', user).then(function(response){
       $scope.cadastroAtualizar = response.data;
       $scope.cadastroAtualizar._id = response.data._id.$oid;
     });
   };
 
   $scope.atualizar = function(){
-    $http.put('/atualizar', $scope.cadastroAtualizar).then(function(response){
+    $http.put('http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario', $scope.cadastroAtualizar).then(function(response){
       if (response.data == "1") {
         $scope.resposta = "Atualizado com Sucesso, Por favor Logue Novamente para Confirmar as Alterações";
         $scope.modalResposta.show();
@@ -185,7 +185,7 @@ angular.module('starter.controllers', [])
 
   $scope.deletar = function(){
     $scope.data = localStorage.getItem("usuario");
-    $http.delete('/deletar'+'/'+ $scope.data).then(function(){
+    $http.delete('http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/usuario'+'/'+ $scope.data).then(function(){
       $scope.alerta = "Excluido com Sucesso";
       window.location.href = "#/app/login";
       $scope.modal.hide();
@@ -194,7 +194,7 @@ angular.module('starter.controllers', [])
 
   $scope.deletarResposta = function(){
     var user = localStorage.getItem("usuario");
-    $http.delete('/deletarResposta' + '/' + user + '/' + $scope.faixaResposta )
+    $http.delete('http://192.168.0.101:8080/ServicoDeAnaliseDoSolo/rest/informativa' + '/' + user + '/' + $scope.faixaResposta )
     .then(function(response){
       $scope.resposta = response.data;
       $scope.recarregar = 1;
