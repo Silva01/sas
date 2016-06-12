@@ -10,20 +10,33 @@ angular.module('starter.controllers', [])
   //});
   $scope.alerta = "Você Realmente Deseja Excluir Seu Perfil ?";
 
-  $ionicModal.fromTemplateUrl('templates/aviso.html', {
+  $ionicModal.fromTemplateUrl('templates/modais/avisoUser.html', {
    scope: $scope,
    animation: 'slide-in-up',
   }).then(function(modal) {
      $scope.modal = modal;
   });
 
-  $ionicModal.fromTemplateUrl('templates/resposta.html', {
+  $ionicModal.fromTemplateUrl('templates/modais/respostaGeral.html', {
    scope: $scope,
    animation: 'slide-in-up',
  }).then(function(modalResposta) {
      $scope.modalResposta = modalResposta;
   });
 
+  $ionicModal.fromTemplateUrl('templates/modais/modalResposta.html', {
+   scope: $scope,
+   animation: 'slide-in-up',
+  }).then(function(modalResposta) {
+     $scope.respostaModal = modalResposta;
+  });
+
+  $ionicModal.fromTemplateUrl('templates/modais/confirmarExclusaoResposta.html', {
+   scope: $scope,
+   animation: 'slide-in-up',
+  }).then(function(modalResposta) {
+     $scope.confirmarExclusaoResposta = modalResposta;
+  });
   $scope.openModal = function() {
     $scope.modal.show();
   };
@@ -34,12 +47,32 @@ angular.module('starter.controllers', [])
 
   $scope.fecharModalResposta = function(){
     $scope.modalResposta.hide();
+    if($scope.recarregar == 1){
+      window.location.reload();
+    }
+
+    $scope.recarregar = 0;
   };
 
-  $scope.abrirModalResposta = function(resposta){
+  $scope.abrirModalResposta = function(resposta, faixa){
     $scope.resposta = resposta;
-    $scope.modalResposta.show();
+    $scope.faixaResposta = faixa;
+    $scope.respostaModal.show();
   };
+
+  $scope.fecharRespostaModal = function(){
+    $scope.respostaModal.hide();
+  }
+
+  $scope.abrirAvisoResposta = function(){
+    $scope.alerta = "Deseja Excluir essa Resposta ?"
+    $scope.respostaModal.hide();
+    $scope.confirmarExclusaoResposta.show();
+  }
+
+  $scope.fecharAvisoResposta = function(){
+    $scope.confirmarExclusaoResposta.hide();
+  }
 
   $scope.loginDados = {
     usuario: "",
@@ -79,7 +112,9 @@ angular.module('starter.controllers', [])
     $scope.dadosRementente.telefoneRementente = localStorage.getItem("telefone");
     $scope.dadosRementente.usuario = localStorage.getItem("usuario");
     $http.post('/analise', JSON.stringify($scope.dadosRementente)).then(function(){
-      window.location.reload();
+      $scope.resposta = "Faixa Enviada com Sucesso"
+      $scope.recarregar = 1;
+      $scope.modalResposta.show();
     });
   };
 
@@ -154,6 +189,17 @@ angular.module('starter.controllers', [])
       $scope.alerta = "Excluido com Sucesso";
       window.location.href = "#/app/login";
       $scope.modal.hide();
+    });
+  };
+
+  $scope.deletarResposta = function(){
+    var user = localStorage.getItem("usuario");
+    $http.delete('/deletarResposta' + '/' + user + '/' + $scope.faixaResposta )
+    .then(function(response){
+      $scope.resposta = response.data;
+      $scope.recarregar = 1;
+      $scope.confirmarExclusaoResposta.hide();
+      $scope.modalResposta.show();
     });
   };
 })

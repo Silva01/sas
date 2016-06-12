@@ -1,8 +1,8 @@
 <ion-view view-title="Browse">
   <ion-content>
     <div class="list" ng-init="carregarLista()">
-      <a class="item item-avatar" ng-repeat="list in lista" ng-click="abrirModalResposta(list.resposta)">
-        <img src="img/ionic.png"/>
+      <a class="item item-avatar" ng-repeat="list in lista" ng-click="abrirModalResposta(list.resposta, list.faixa)">
+        <img src="img/marca.jpg"/>
         <h2>{{ list.faixa }}</h2>
         <p>{{ list.resposta }}</p>
       </a>

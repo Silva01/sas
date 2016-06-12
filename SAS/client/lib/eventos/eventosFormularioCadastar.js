@@ -5,10 +5,10 @@ Template.formulario.events({
 		var faixaMin = evento.target.faixaMinima.value;
 		var faixaMax = evento.target.faixaMaxima.value;
 		var classificacao = evento.target.classificar.value;
-
-		Cadastro.insert({faixaMin: faixaMin, 
-			faixaMax: faixaMax, 
-			classificacao: classificacao, 
+		localStorage.setItem("info", info);
+		Cadastro.insert({faixaMin: faixaMin,
+			faixaMax: faixaMax,
+			classificacao: classificacao,
 			informacao: info});
 
 		Router.go('/');
