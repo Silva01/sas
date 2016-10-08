@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Silva01/sas.svg?branch=master)](https://travis-ci.org/Silva01/sas)
+
 # SAS WEB - Sistema de Analise do Solo Módulo do Profissional #
 
 Este módulo tem o papel de auxiliar o profissional a analisar os dados de umidade do solo enviado pelo agricultor, onde os dados poderão ser respondido e enviado ao agricultor por meio desta ferramenta.
